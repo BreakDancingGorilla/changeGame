@@ -1,0 +1,85 @@
+body {
+    background-color: #DCD7C9;
+    margin: 0;
+}
+
+canvas {
+    background-color: #A27B5C;
+    width: 100vw;
+    height: 75vh;
+    position: absolute;
+    z-index: 1;
+}
+/* Used to get rid of a gap under the canvas when its position is not absolute. */
+#behindCanvas {
+    height: 75vh;
+}
+
+#blackBar {
+    height: 2vh;
+    width: 100vw;
+    background-color: #2C3639;
+}
+
+#salesbox{
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    
+}
+
+#horzonBar {
+    background-color: #2C3639;
+    width: 1.2vw;
+}
+
+#verBar {
+    background-color: #2C3639;
+
+    height: 1.2vw;
+}
+
+
+#salesContainer {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#salePrice {
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    background-color: #3F4E4F;
+
+}
+
+#saleTotal {
+    align-self: center;
+}
+
+#bottomFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#promptBox {
+    display: flex;
+    height: 10vh;
+}
+
+#change {
+    font-size: 40px;
+    width: 20vw;
+}
+
+#realBottom {
+    display: flex;
+    justify-content: center;
+    gap: 15vw;
+}
+
+#streakBox {
+    font-size: 50px;
+}
