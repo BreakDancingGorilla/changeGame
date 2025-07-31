@@ -46,6 +46,8 @@ var salesPrice = {
   }
 }
 
+//const width = element.offsetWidth;
+//console.log(width); */
 var money = {
 slots: 0,
 slotsW: 0,
@@ -53,7 +55,7 @@ slotsH: 0,
 billW: 100,
 billH:110,
 billAmount: 0,
-startingW: canvas.width * 0.50,
+startingW: document.getElementById("salesbox").offsetWidth,
 startingH: canvas.height * 0.30,
 billList: [],
 change: 0,
