@@ -4,11 +4,22 @@
     <meta charset="UTF-8" />
     <title>title</title>
     <link href="./style.css" rel="stylesheet">    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet">
 </head>
 <body>
+<div id="answer">
+    <h1 id="answerTitle">Answer</h1>
+    <div id="horzonBar"></div>
+    <div id="answerBox"><h2 id="correctAns">$50.00</h2></div>
+    
+</div>
 <div id="salesbox">
 <div id="salesContainer">
-    <h1 id="saleTotal">SALES TOTAL</h1>
+
+    <h1 id="saleTotal" class="limelight-regular">SALES TOTAL</h1>
+    <div id="verBar"></div>
     <div id="salePrice">    <h1 id="sales">Default</h1></div>
     <div id="verBar"></div>
 </div>
@@ -19,22 +30,33 @@
 
 <!-- Used to get rid of a gap under the canvas when its position is not absolute. -->
 <div id="behindCanvas"></div>
-
 <div id="blackBar"></div>
 <div id="realBottom">
 <div id="bottomFlex">
-            <h1 id="enterChange"><U>ENTER CHANGE</U></h1>
+            <h1 id="enterChange" class="limelight-regular" ><U>ENTER CHANGE</U></h1>
             <div id="promptBox">
                 <input id="change" type="number"> 
-                <button id="submit">SUBMIT</button>
             </div> 
         </div>
 <div id="bottomFlex">
-            <h1 id="enterChange"><U>STREAK</U></h1>
+            <h1 id="enterChange" class="limelight-regular"><U>STREAK</U></h1>
             <div id="promptBox">
                 <h1 id="streakBox">0</h1>
             </div> 
-        </div>        
+        </div>   
+<div id="bottomFlex">
+            <h1 id="enterChange" class="limelight-regular"><U>HI-SCORE</U></h1>
+            <div id="promptBox">
+                <h1 id="hiScore">0</h1>
+            </div> 
+        </div> 
+        
+<div id="bottomFlex">
+            <h1 id="enterChange" class="limelight-regular"><U>TIMER</U></h1>
+            <div id="promptBox">
+                <h1 id="timer">0</h1>
+            </div> 
+        </div> 
 </div>
 
 <script src="./code.js"></script>

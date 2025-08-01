@@ -7,25 +7,63 @@ canvas.width = document.documentElement.clientWidth * 1;
 canvas.height = document.documentElement.clientHeight * 0.75;
 document.getElementById("can").style.backgroundColor = "#A27B5C";
 
+///Timer 
+let timeLeft = 21;
+const timerElement = document.getElementById("timer");
+const countdown = setInterval(() => {
+    if (timeLeft <= 0) {
+      
+    document.getElementById("correctAns").textContent = "$" + money.change;
+    screenColor.isWrong = true;
+    streak = 0;
+   if(streak > hiScore){
+    hiScore++;
+   }
+   document.getElementById("hiScore").textContent = hiScore;
+   document.getElementById("streakBox").textContent = streak;
+  document.getElementById("change").value = null;
+  salesPrice.updateSalesP();
+  money.newBillAmt();
+  money.renderBills();
+   timeLeft = 21;
+    } else {
+
+      timeLeft--;
+    }
+          timerElement.textContent = timeLeft;
+  }, 1000); // runs every 1000ms = 1 second
+
+
+
 
 let streak = 0;
-document.getElementById('submit').onclick = function() {
-   if (document.getElementById("change").value == money.change) {
+let hiScore = 0;
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      if (document.getElementById("change").value == money.change) {
     screenColor.isRight = true;
     streak++;
+
    }
    else {
+                      document.getElementById("correctAns").textContent = "$" + money.change;
     screenColor.isWrong = true;
     streak = 0;
    }
+   if(streak > hiScore){
+    hiScore++;
+   }
+   timer = 20;
+       timeLeft = 21;
+   document.getElementById("hiScore").textContent = hiScore;
    document.getElementById("streakBox").textContent = streak;
-    document.getElementById("change").value = 0;
+    document.getElementById("change").value = null;
     salesPrice.updateSalesP();
     money.newBillAmt();
     money.renderBills();
     
-};
-
+    }
+  });
 
 const salesBox = document.getElementById("sales");
 var salesPrice = {
@@ -53,10 +91,10 @@ slots: 0,
 slotsW: 0,
 slotsH: 0,
 billW: 100,
-billH:110,
+billH:255,
 billAmount: 0,
 startingW: document.getElementById("salesbox").offsetWidth,
-startingH: canvas.height * 0.30,
+startingH: this.billH,
 billList: [],
 change: 0,
 updateSlots: function(){
@@ -116,7 +154,8 @@ renderBills: function(){
     }
   }
   console.log(this.billList);
-  this.change = parseFloat((this.billAmount - salesPrice.salesPrice).toFixed(2))
+  this.change = parseFloat((this.billAmount - salesPrice.salesPrice).toFixed(2));
+
   console.log(change);
 
 },
@@ -127,7 +166,13 @@ realRender: function(){
   for (let i = 0; i < this.billList.length; i++) {
     if (num1 >= canvas.width * 0.90) {
       num1 = 0;
-      num2+= this.billH + this.startingH;
+      if (document.getElementById("salesbox").offsetHeight > this.billH) {
+        num2+=document.getElementById("salesbox").offsetHeight;
+      }
+      else {
+        num2+= this.billH;
+      }
+
     }
 
     
@@ -191,7 +236,7 @@ money.renderBills();
     wrongAns: "red",
     rightAns: "green",
     defaultColor: "#A27B5C",
-    timerLen: 100,
+    timerLen: 125,
     timer: 0,
     isRight: false,
     isWrong: false,
@@ -207,9 +252,12 @@ money.renderBills();
       }
       if (this.isWrong) {
                 document.getElementById("can").style.backgroundColor = this.wrongAns;
+
+                document.getElementById('answer').style.visibility = 'visible';
         this.timer++;
         if (this.timer >= this.timerLen) {
           document.getElementById("can").style.backgroundColor = this.defaultColor;
+          document.getElementById('answer').style.visibility = 'hidden';
           this.timer = 0;
           this.isWrong = false;
         }

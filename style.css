@@ -1,10 +1,22 @@
+@font-face {
+  font-family: 'Digital7';
+  src: url('digital-7.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.limelight-regular {
+  font-family: "Limelight", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
-    background-color: #DCD7C9;
+    background-color: #2C3639;
     margin: 0;
 }
 
 canvas {
-    background-color: #A27B5C;
+    background: linear-gradient(to bottom, #ef745c, #34073d);
     width: 100vw;
     height: 75vh;
     position: absolute;
@@ -47,39 +59,86 @@ canvas {
 }
 
 #salePrice {
+    font-family: 'Digital7';
+    color: #39FF14;
     display: flex;
     justify-content: center;
     font-size: 1.3rem;
-    background-color: #3F4E4F;
+    background-color: #121414;
 
 }
 
 #saleTotal {
     align-self: center;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #bottomFlex {
+    background-color: #85394b;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-#promptBox {
-    display: flex;
-    height: 10vh;
 }
 
 #change {
     font-size: 40px;
-    width: 20vw;
-}
+    font-family: 'Digital7';
+    color: #39FF14;
+    background-color: #121414;
+    width: 15vw;
+    border: none;
 
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 #realBottom {
-    display: flex;
-    justify-content: center;
-    gap: 15vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1vw;
 }
 
 #streakBox {
     font-size: 50px;
+}
+#hiScore {
+     font-size: 50px;
+}
+#timer {
+    font-size: 50px;
+}
+#answer {
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 10vh;
+    z-index: 20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* Optional styling */
+
+    background-color: #DCD7C9;
+    border: 2px solid #2C3639;
+}
+#correctAns {
+        font-family: 'Digital7';
+    color: #39FF14;
+}
+#answerBox {
+    display: flex;
+    justify-content: center;
+    background-color: #121414;
+    width: 100%;
+}
+#answerTitle {
+    margin: 0;
 }
