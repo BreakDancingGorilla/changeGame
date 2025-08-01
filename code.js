@@ -7,8 +7,17 @@ canvas.width = document.documentElement.clientWidth * 1;
 canvas.height = document.documentElement.clientHeight * 0.75;
 document.getElementById("can").style.backgroundColor = "#A27B5C";
 
+
+
+window.addEventListener('resize', function () {
+           canvas.width = document.documentElement.clientWidth;
+       canvas.height = document.documentElement.clientHeight;
+        money.updateSlots();
+});
+
+
 ///Timer 
-let timeLeft = 21;
+let timeLeft = document.getElementById("slider").value;
 const timerElement = document.getElementById("timer");
 const countdown = setInterval(() => {
     if (timeLeft <= 0) {
@@ -25,7 +34,7 @@ const countdown = setInterval(() => {
   salesPrice.updateSalesP();
   money.newBillAmt();
   money.renderBills();
-   timeLeft = 21;
+   timeLeft = document.getElementById("slider").value;
     } else {
 
       timeLeft--;
@@ -33,9 +42,23 @@ const countdown = setInterval(() => {
           timerElement.textContent = timeLeft;
   }, 1000); // runs every 1000ms = 1 second
 
+const menu = document.getElementById("showingMenu");
+document.getElementById("menu").addEventListener("click", function(){
+  let current = window.getComputedStyle(menu).visibility;
+  console.log(current);
 
+if (current === 'hidden') {
+  menu.style.visibility = 'visible';
+} else {
+  menu.style.visibility = 'hidden';
+}
+console.log("hello");
+});
+const slider = document.getElementById('slider');
 
-
+  slider.addEventListener('input', () => {
+timeLeft = document.getElementById("slider").value;
+  });
 let streak = 0;
 let hiScore = 0;
 document.addEventListener("keydown", function(event) {
@@ -54,7 +77,7 @@ document.addEventListener("keydown", function(event) {
     hiScore++;
    }
    timer = 20;
-       timeLeft = 21;
+       timeLeft = document.getElementById("slider").value;
    document.getElementById("hiScore").textContent = hiScore;
    document.getElementById("streakBox").textContent = streak;
     document.getElementById("change").value = null;
@@ -278,7 +301,8 @@ money.renderBills();
   ctx.clearRect(0,0,canvas.width,canvas.height);
      screenColor.screenUpdate();
       money.realRender();
-      console.log(money.change);
+
+
 
     //// End of loop
   };
