@@ -4,6 +4,13 @@
   font-weight: normal;
   font-style: normal;
 }
+
+.cherry-bomb-one-regular {
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .limelight-regular {
   font-family: "Limelight", sans-serif;
   font-weight: 400;
@@ -13,8 +20,12 @@
 body {
     background-color: #2C3639;
     margin: 0;
+      height: 100%;
 }
-
+html {
+  height: 100%;
+  margin: 0;
+}
 canvas {
     background: linear-gradient(to bottom, #ef745c, #34073d);
     width: 100vw;
@@ -63,7 +74,6 @@ canvas {
     color: #39FF14;
     display: flex;
     justify-content: center;
-    font-size: 1.3rem;
     background-color: #121414;
 
 }
@@ -79,6 +89,7 @@ canvas {
     display: flex;
     align-items: center;
     flex-direction: column;
+    
 }
 
 #change {
@@ -87,6 +98,7 @@ canvas {
     color: #39FF14;
     background-color: #121414;
     width: 15vw;
+    height: 7vh;
     border: none;
 
 }
@@ -97,19 +109,18 @@ input::-webkit-inner-spin-button {
 }
 #realBottom {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 21vw 16vw 20vw 16vw 19vw;
     gap: 1vw;
 }
 
-#streakBox {
-    font-size: 50px;
+#enterChange {
+
+  margin: 0;     
+  margin-bottom: 2vh;      /* Remove default margin */
+  padding: 0;          /* Optional: remove padding */
+/* Include padding in total width if added */
 }
-#hiScore {
-     font-size: 50px;
-}
-#timer {
-    font-size: 50px;
-}
+
 #answer {
     visibility: hidden;
     position: absolute;
@@ -160,16 +171,63 @@ img {
     height: 100%;
 }
 
+
+
 #showingMenu {
         display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
-    visibility: hidden;
+    visibility: visible;
     display: flex;
-    background-color: rgba(55, 9, 60, 0.5);;
+    background-color: rgba(55, 9, 60, 0.6);;
     width: 30vw;
     margin-left: 70vw;
     height: 75vh;
     z-index: 900;
+}
+
+.menuOpt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5vh;
+}
+
+.sliderBox {
+    display: flex;
+}
+
+.slider {
+    margin-right: 1vw;
+    margin-top: 1vh;
+}
+
+#bigFlex {
+    display: flex;
+    justify-content: center;
+    height: 22vh;
+}
+
+h1 {
+    font-size: 4vh;
+}
+
+@media (max-height: 575px) {
+
+    h1 {
+        font-size: 5vh;
+    }
+}
+@media (max-width: 835px) {
+
+
+
+    #bigFlex {
+        height: 20vh;
+    }
+
+    h1 {
+        font-size: 4vw;
+    }
 }

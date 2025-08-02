@@ -10,6 +10,7 @@ document.getElementById("can").style.backgroundColor = "#A27B5C";
 
 
 window.addEventListener('resize', function () {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
            canvas.width = document.documentElement.clientWidth;
        canvas.height = document.documentElement.clientHeight;
         money.updateSlots();
@@ -17,7 +18,7 @@ window.addEventListener('resize', function () {
 
 
 ///Timer 
-let timeLeft = document.getElementById("slider").value;
+let timeLeft = document.getElementById("slider1").value;
 const timerElement = document.getElementById("timer");
 const countdown = setInterval(() => {
     if (timeLeft <= 0) {
@@ -34,7 +35,7 @@ const countdown = setInterval(() => {
   salesPrice.updateSalesP();
   money.newBillAmt();
   money.renderBills();
-   timeLeft = document.getElementById("slider").value;
+   timeLeft = document.getElementById("slider1").value;
     } else {
 
       timeLeft--;
@@ -54,19 +55,24 @@ if (current === 'hidden') {
 }
 console.log("hello");
 });
-const slider = document.getElementById('slider');
+const slider1 = document.getElementById('slider1');
 
-  slider.addEventListener('input', () => {
-timeLeft = document.getElementById("slider").value;
+  slider1.addEventListener('input', () => {
+timeLeft = document.getElementById("slider1").value;
+document.getElementById("timerSliValue").innerText = document.getElementById("slider1").value;
   });
 let streak = 0;
 let hiScore = 0;
+let hiTime = 1000;
 document.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
       if (document.getElementById("change").value == money.change) {
     screenColor.isRight = true;
     streak++;
-
+    if (timeLeft < hiTime) {
+      hiTime = timeLeft;
+      this.document.getElementById("hiTime").innerText = hiTime;
+    }
    }
    else {
                       document.getElementById("correctAns").textContent = "$" + money.change;
@@ -77,7 +83,7 @@ document.addEventListener("keydown", function(event) {
     hiScore++;
    }
    timer = 20;
-       timeLeft = document.getElementById("slider").value;
+       timeLeft = document.getElementById("slider1").value;
    document.getElementById("hiScore").textContent = hiScore;
    document.getElementById("streakBox").textContent = streak;
     document.getElementById("change").value = null;
@@ -121,6 +127,7 @@ startingH: this.billH,
 billList: [],
 change: 0,
 updateSlots: function(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
   let j = 0;
 for (let i = this.startingW; i < canvas.width; i++) {
   i +=  this.billW;
@@ -139,6 +146,7 @@ for (let i = this.startingH; i < canvas.height; i++) {
 },
 
 newBillAmt: function(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
   this.billAmount = ranNum(Math.ceil(salesPrice.salesPrice),100);
 },
 
@@ -298,7 +306,7 @@ money.renderBills();
     //// Everything here always runs.
 
     //salesPrice.updateSalesP(true);
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.clearRect(0,0,canvas.width,canvas.height);
      screenColor.screenUpdate();
       money.realRender();
 
