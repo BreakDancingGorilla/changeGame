@@ -21,7 +21,8 @@
         <div class="menuOpt"> 
             <label for="slider" class="limelight-regular">TIMER:</label>
                         <div class="sliderBox">
-            <input id="slider1" class="slider" type="range" min="5" max="200" value="30">
+            <input id="slider1" type="range"
+            id="slider" min="5" max="200" value="30">
                             <span id="timerSliValue" class="cherry-bomb-one-regular">200</span>
             </div>
             
@@ -30,34 +31,13 @@
         <div class="menuOpt">
             <label for="slider" class="limelight-regular">MAX SALES</label>
             <div class="sliderBox">
-                <input id="slider2" class="slider" type="range"  min="0" max="300" value="50">
-                <span id="sliderValue" class="cherry-bomb-one-regular">500</span>
+                <input id="slider2" type="range" id="slider" min="1" max="500" value="100">
+                <span id="sliderValue" class="cherry-bomb-one-regular">100</span>
             </div>
         </div>
 
-        <div class="menuOpt">
-            <label for="slider" class="limelight-regular">MAX BILLS</label>
-            <div class="sliderBox">
-                <input id="slider3" class="slider" type="range" min="0" max="300" value="50">
-                <span id="sliderValue" class="cherry-bomb-one-regular">500</span>
-            </div>
-        </div>
-
-        <div class="menuOpt">
-            <label for="slider" class="limelight-regular">MAX COINS</label>
-            <div  class="sliderBox">
-                <input id="slider4" class="slider" type="range"  min="0" max="300" value="50">
-                <span id="sliderValue" class="cherry-bomb-one-regular">500</span>
-            </div>
-        </div>
-
-         <div class="menuOpt">
-            <label for="slider" class="limelight-regular">COINS</label>
-            <div class="sliderBox">
-                <input class="slider" style="transform: scale(1.5);" type="checkbox"  min="0" max="300" value="50">
-
-            </div>
-        </div>
+        
+    
 
         </div>
         <div id="answer">
@@ -91,7 +71,7 @@
         <div id="bottomFlex">
             <h1 id="enterChange" class="limelight-regular"><U>ENTER CHANGE</U></h1>
             <div id="promptBox">
-                <input id="change" type="number">
+                <input id="change" type="number" autofocus>
             </div>
         </div>
         <div id="bottomFlex">

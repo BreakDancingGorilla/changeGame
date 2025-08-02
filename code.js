@@ -16,11 +16,13 @@ window.addEventListener('resize', function () {
         money.updateSlots();
 });
 
+let time = 0;
 
 ///Timer 
 let timeLeft = document.getElementById("slider1").value;
 const timerElement = document.getElementById("timer");
 const countdown = setInterval(() => {
+  time++;
     if (timeLeft <= 0) {
       
     document.getElementById("correctAns").textContent = "$" + money.change;
@@ -61,17 +63,28 @@ const slider1 = document.getElementById('slider1');
 timeLeft = document.getElementById("slider1").value;
 document.getElementById("timerSliValue").innerText = document.getElementById("slider1").value;
   });
+
+  const slider2 = document.getElementById('slider2');
+
+  slider2.addEventListener('input', () => {
+let maxSale = document.getElementById("slider2").value;
+document.getElementById("sliderValue").innerText = document.getElementById("slider2").value;
+  });
 let streak = 0;
 let hiScore = 0;
 let hiTime = 1000;
 document.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
+
       if (document.getElementById("change").value == money.change) {
     screenColor.isRight = true;
     streak++;
-    if (timeLeft < hiTime) {
-      hiTime = timeLeft;
-      this.document.getElementById("hiTime").innerText = hiTime;
+          if (time < hiTime) {
+      hiTime = time;
+      console.log(hiTime);
+      console.log(time);
+      document.getElementById("hiTime").innerText = time;
+      time = 0;
     }
    }
    else {
@@ -100,7 +113,7 @@ var salesPrice = {
   updateSalesP: function(log){
         salesBox.innerHTML = "$f";
 
-    let wholeNum = ranNum(0,100);
+    let wholeNum = ranNum(0,document.getElementById("slider2").value);
     let decNum = ranNum(0,99);
     decNum = decNum/100;
     if(log){
@@ -108,6 +121,9 @@ var salesPrice = {
     console.log(decNum);
     }
     wholeNum += decNum;
+    wholeNum = parseFloat((wholeNum).toFixed(2));
+
+
     this.salesPrice = wholeNum;
     salesBox.innerHTML = "$" + this.salesPrice;
   }
@@ -151,43 +167,109 @@ newBillAmt: function(){
 },
 
 renderBills: function(){
-  let billAmt = this.billAmount;
+  let wallet = [];
+  let selection = 0;
+  let maxWallet = this.billAmount;
   this.billList = [];
-  let amtToCheck = 0;
-  let j = 0;
-  console.log(billAmt);
-  for (let i = 0; billAmt >= 0; i++) {
-    amtToCheck = 20;
-    if (billAmt % amtToCheck == 0) {
-      billAmt -= amtToCheck;
-      if (j > 0) {
-        this.billList[this.billList.length] = "twentyDollar.png";
-      }
-      j++;
-    } else {
-      amtToCheck = 10;
-      if (billAmt % amtToCheck == 0) {
-        billAmt -= amtToCheck;
-        this.billList[this.billList.length] = "tenDollar.png";
-      } else {
-        amtToCheck = 5;
-        if (billAmt % amtToCheck == 0) {
-          billAmt -= amtToCheck;
-          this.billList[this.billList.length] = "fiveDollar.png";
-        } else {
-          amtToCheck = 1;
-          if (billAmt % amtToCheck == 0) {
-            billAmt -= amtToCheck;
-            this.billList[this.billList.length] = "oneDollar.png";
-          }
-        }
-      }
+  for (let i = 0; i <= maxWallet;) {
+    selection = ranNum(0,100);
+    if (selection > 0 && selection < 5) {
+      wallet[wallet.length] = 100;
+      i+=100;
+    }
+    if (selection > 5 && selection < 15) {
+      wallet[wallet.length] = 50;
+      i+=50;
+    }
+    if (selection > 15 && selection < 40) {
+      wallet[wallet.length] = 20;
+      i+=20;
+    }
+    if (selection > 40 && selection < 65) {
+      wallet[wallet.length] = 10;
+      i+=10;
+    }
+    if (selection > 65 && selection < 80) {
+      wallet[wallet.length] = 5;
+      i+=5;
+    }
+    if (selection > 80 && selection < 100) {
+      wallet[wallet.length] = 1;
+      i+=1;
     }
   }
-  console.log(this.billList);
-  this.change = parseFloat((this.billAmount - salesPrice.salesPrice).toFixed(2));
 
-  console.log(change);
+  console.log(wallet);
+  console.log(salesPrice.salesPrice);
+
+let trimmedWallet = []; //just take the greatest of the bills until we hit salesPrice;s
+ for (let i = 0; i <= salesPrice.salesPrice;) {
+  selection = ranNum(0,wallet.length);
+    console.log(i);
+  if (wallet[selection] == 100) {
+    trimmedWallet[trimmedWallet.length] = 100;
+    i+=100;
+  }
+  if (wallet[selection] == 50) {
+    trimmedWallet[trimmedWallet.length] = 50;
+    i+=50;
+  }
+  if (wallet[selection] == 20) {
+    trimmedWallet[trimmedWallet.length] = 20;
+    i+=20;
+  }
+  if (wallet[selection] == 10) {
+    trimmedWallet[trimmedWallet.length] = 10;
+    i+=10;
+  }
+  if (wallet[selection] == 5) {
+    trimmedWallet[trimmedWallet.length] = 5;
+    i+=5;
+  }
+  if (wallet[selection] == 1) {
+    trimmedWallet[trimmedWallet.length] = 1;
+    i+=1;
+  }
+   console.log(i);
+ }
+
+
+
+
+ for (let i = 0; i <= salesPrice.salesPrice;) {
+let maxIndex = trimmedWallet.indexOf(Math.max(...trimmedWallet));
+
+if (trimmedWallet[maxIndex] == 100) {
+   this.billList[this.billList.length] = "hundredDollar.png.png";
+   i+=100;
+}
+if (trimmedWallet[maxIndex] == 50) {
+   this.billList[this.billList.length] = "fiftyDollar.png";
+   i+=50;
+}
+if (trimmedWallet[maxIndex] == 20) {
+   this.billList[this.billList.length] = "twentyDollar.png";
+   i+=20;
+}
+if (trimmedWallet[maxIndex] == 10) {
+   this.billList[this.billList.length] = "tenDollar.png";
+   i+=10;
+}
+if (trimmedWallet[maxIndex] == 5) {
+   this.billList[this.billList.length] = "fiveDollar.png";
+   i+=5;
+}
+if (trimmedWallet[maxIndex] == 1) {
+   this.billList[this.billList.length] = "oneDollar.png";
+   i+=1;
+}
+ trimmedWallet.splice(maxIndex,1);
+ }
+
+ console.log(trimmedWallet);
+
+
+  this.change = parseFloat((this.billAmount - salesPrice.salesPrice).toFixed(2));
 
 },
 realRender: function(){
@@ -309,7 +391,7 @@ money.renderBills();
       ctx.clearRect(0,0,canvas.width,canvas.height);
      screenColor.screenUpdate();
       money.realRender();
-
+      console.log(money.change);
 
 
     //// End of loop

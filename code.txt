@@ -1,0 +1,49 @@
+let billAmt = this.billAmount;
+  this.billList = [];
+  let amtToCheck = 0;
+  let j = 0;
+  console.log(billAmt);
+  for (let i = 0; billAmt >= 0; i++) {
+    amtToCheck = 50;
+    if (billAmt % amtToCheck == 0) {
+      billAmt -= amtToCheck;
+        this.billList[this.billList.length] = "fiftyDollar.png";
+      
+    }else {
+    amtToCheck = 20;
+    if (billAmt % amtToCheck == 0) {
+      billAmt -= amtToCheck;
+
+        this.billList[this.billList.length] = "twentyDollar.png";
+
+    } else {
+      amtToCheck = 10;
+      if (billAmt % amtToCheck == 0) {
+        billAmt -= amtToCheck;
+        this.billList[this.billList.length] = "tenDollar.png";
+      } else {
+        amtToCheck = 5;
+        if (billAmt % amtToCheck == 0) {
+          billAmt -= amtToCheck;
+          this.billList[this.billList.length] = "fiveDollar.png";
+        } else {
+          amtToCheck = 1;
+          if (billAmt % amtToCheck == 0) {
+            billAmt -= amtToCheck;
+            this.billList[this.billList.length] = "oneDollar.png";
+          }
+        }
+      }
+    }
+  }
+  }
+  console.log(this.billList);
+  this.change = parseFloat((this.billAmount - salesPrice.salesPrice).toFixed(2));
+
+  console.log(change);
+
+    const numbers = [3, 7, 2, 9, 5];
+
+const maxIndex = wallet.indexOf(Math.max(...wallet));
+
+console.log(maxIndex); // Output: 3 (because 9 is the largest number)
