@@ -5,7 +5,7 @@ const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
 canvas.width = document.documentElement.clientWidth * 1;
 canvas.height = document.documentElement.clientHeight * 0.75;
-document.getElementById("can").style.backgroundColor = "#A27B5C";
+
 
 
 
@@ -48,14 +48,12 @@ const countdown = setInterval(() => {
 const menu = document.getElementById("showingMenu");
 document.getElementById("menu").addEventListener("click", function(){
   let current = window.getComputedStyle(menu).visibility;
-  console.log(current);
 
 if (current === 'hidden') {
   menu.style.visibility = 'visible';
 } else {
   menu.style.visibility = 'hidden';
 }
-console.log("hello");
 });
 const slider1 = document.getElementById('slider1');
 
@@ -67,7 +65,6 @@ document.getElementById("timerSliValue").innerText = document.getElementById("sl
   const slider2 = document.getElementById('slider2');
 
   slider2.addEventListener('input', () => {
-let maxSale = document.getElementById("slider2").value;
 document.getElementById("sliderValue").innerText = document.getElementById("slider2").value;
   });
 let streak = 0;
@@ -81,8 +78,7 @@ document.addEventListener("keydown", function(event) {
     streak++;
           if (time < hiTime) {
       hiTime = time;
-      console.log(hiTime);
-      console.log(time);
+
       document.getElementById("hiTime").innerText = time;
       time = 0;
     }
@@ -116,10 +112,7 @@ var salesPrice = {
     let wholeNum = ranNum(0,document.getElementById("slider2").value);
     let decNum = ranNum(0,99);
     decNum = decNum/100;
-    if(log){
-    console.log(wholeNum);
-    console.log(decNum);
-    }
+
     wholeNum += decNum;
     wholeNum = parseFloat((wholeNum).toFixed(2));
 
@@ -129,8 +122,7 @@ var salesPrice = {
   }
 }
 
-//const width = element.offsetWidth;
-//console.log(width); */
+
 var money = {
 slots: 0,
 slotsW: 0,
@@ -166,34 +158,7 @@ newBillAmt: function(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
   this.billAmount = ranNum(Math.ceil(salesPrice.salesPrice),100);
 },
-/* (trimmedWallet[maxIndex] == 100) {
-   this.billList[this.billList.length] = "hundredDollar.png.png";
-   num-=100;
-   this.billAmount+=100;
-}
-if (trimmedWallet[maxIndex] == 50) {
-   this.billList[this.billList.length] = "fiftyDollar.png";
-   i+=50;
-    this.billAmount+=100;
-}
-if (trimmedWallet[maxIndex] == 20) {
-   this.billList[this.billList.length] = "twentyDollar.png";
-   i+=20;
-   this.billAmount+=20;
-}
-if (trimmedWallet[maxIndex] == 10) {
-   this.billList[this.billList.length] = "tenDollar.png";
-   i+=10;
-   this.billAmount+=10;
-}
-if (trimmedWallet[maxIndex] == 5) {
-   this.billList[this.billList.length] = "fiveDollar.png";
-   i+=5;
-   this.billAmount+=5;
-}
-if (trimmedWallet[maxIndex] == 1) {
-   this.billList[this.billList.length] = "oneDollar.png";
-   i+=1; */
+
 renderBills: function(){
   let wallet = [];
   let selection = 0;
@@ -204,15 +169,10 @@ renderBills: function(){
   this.billAmount = 0;
   this.coinList = [];
   if (ranNum(1, 3) == 1) {
-    console.log("Hello," + Math.floor(parseFloat(salesPrice.salesPrice)));
     let num = Math.floor(parseFloat(salesPrice.salesPrice));
     changeT = 3;
 
     for (let i = num; i > 0;) {
-    console.log(num);
-    console.log(this.billList);
-    console.log(i%100);
-    console.log(this.billAmount);
     if (i % 100 == 0) {
             this.billList[this.billList.length] = "hundredDollar.png.png";
       i -= 100;
@@ -253,7 +213,6 @@ renderBills: function(){
 
 
   for (let i = 0; i < changeT; ) {
-    console.log(i);
     i = parseFloat((i).toFixed(2));
       selection = ranNum(0, 100);
       if (selection > 0 && selection < 15) {
@@ -277,7 +236,6 @@ renderBills: function(){
     for (let i = num; i <= salesPrice.salesPrice.toFixed(2); ) {
       if (pocketChange.length == 0) {
         for (let i = 0; i < changeT; ) {
-    console.log(i);
     i = parseFloat((i).toFixed(2));
       selection = ranNum(0, 100);
       if (selection > 0 && selection < 15) {
@@ -323,7 +281,6 @@ renderBills: function(){
       }
       pocketChange.splice(maxIndex, 1);
     }
-   console.log(this.coinList);
   } else {
     for (let i = 0; i <= maxWallet; ) {
       selection = ranNum(0, 100);
@@ -353,13 +310,10 @@ renderBills: function(){
       }
     }
 
-    console.log(wallet);
-    console.log(salesPrice.salesPrice);
 
     let trimmedWallet = []; //just take the greatest of the bills until we hit salesPrice;s
     for (let i = 0; i <= salesPrice.salesPrice; ) {
       selection = ranNum(0, wallet.length);
-      console.log(i);
       if (wallet[selection] == 100) {
         trimmedWallet[trimmedWallet.length] = 100;
         i += 100;
@@ -384,7 +338,6 @@ renderBills: function(){
         trimmedWallet[trimmedWallet.length] = 1;
         i += 1;
       }
-      console.log(i);
     }
 
     for (let i = 0; i <= salesPrice.salesPrice; ) {
@@ -444,9 +397,6 @@ renderBills: function(){
     this.billAmount+=1;
   }
 }
- console.log(this.billList);
-
-console.log(this.billAmount + "hi");
   }  
 this.change = parseFloat((this.billAmount - salesPrice.salesPrice).toFixed(2));
 
@@ -454,7 +404,6 @@ this.change = parseFloat((this.billAmount - salesPrice.salesPrice).toFixed(2));
 realRender: function(){
   let num1 = this.startingW;
   let num2 = 0;
-  console.log(this.slots);
   for (let i = 0; i < this.billList.length; i++) {
     if (num1 >= canvas.width * 0.90) {
       num1 = 0;
@@ -519,33 +468,18 @@ money.renderBills();
 
 
   
-   var deltaTime = {
-    lastUpdate: Date.now(),
-    currentUpdate: this.lastUpdate,
-    time: 0.1,
-
-    update: function () {
-      this.currentUpdate = Date.now();
-      if (this.lastUpdate === 0) {
-        this.lastUpdate = this.currentUpdate;
-      }
-      this.time = (this.currentUpdate - this.lastUpdate) / 1000;
-      this.lastUpdsate = this.currentUpdate;
-    },
-  };
-  
 
   function imageRender(source, x, y) {
     theImage = new Image();
     theImage.src = source;
     ctx.drawImage(theImage, x, y);
   }
-     
+
 
 
   var screenColor = {
-    wrongAns: "red",
-    rightAns: "green",
+    wrongAns: "#FF3131",
+    rightAns: "#0FFF50",
     defaultColor: "#A27B5C",
     timerLen: 125,
     timer: 0,
@@ -553,21 +487,17 @@ money.renderBills();
     isWrong: false,
     screenUpdate: function(){
       if (this.isRight) {
-        document.getElementById("can").style.backgroundColor = this.rightAns;
         this.timer++;
         if (this.timer >= this.timerLen) {
-          document.getElementById("can").style.backgroundColor = this.defaultColor;
           this.timer = 0;
           this.isRight = false;
         }
       }
       if (this.isWrong) {
-                document.getElementById("can").style.backgroundColor = this.wrongAns;
-
                 document.getElementById('answer').style.visibility = 'visible';
         this.timer++;
         if (this.timer >= this.timerLen) {
-          document.getElementById("can").style.backgroundColor = this.defaultColor;
+
           document.getElementById('answer').style.visibility = 'hidden';
           this.timer = 0;
           this.isWrong = false;
@@ -578,14 +508,11 @@ money.renderBills();
   }
   
       money.newBillAmt();
-    //money.renderBills();
-   // console.log(money.billList);
   
     main = () => {
     window.requestAnimationFrame(main);
     //// Everything here always runs.
 
-    //salesPrice.updateSalesP(true);
       ctx.clearRect(0,0,canvas.width,canvas.height);
      screenColor.screenUpdate();
       money.realRender();

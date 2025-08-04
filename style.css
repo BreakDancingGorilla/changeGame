@@ -26,8 +26,10 @@ html {
   height: 100%;
   margin: 0;
 }
+
+
+
 canvas {
-    background: linear-gradient(to bottom, #ef745c, #34073d);
     width: 100vw;
     height: 75vh;
     position: absolute;
@@ -36,6 +38,7 @@ canvas {
 /* Used to get rid of a gap under the canvas when its position is not absolute. */
 #behindCanvas {
     height: 75vh;
+    background: linear-gradient(to bottom, #ef745c, #34073d) !important;
 }
 
 #blackBar {
@@ -67,6 +70,13 @@ canvas {
     display: flex;
     flex-direction: column;
 
+}
+
+.neonG{
+background-color: #0FFF50 ;
+}
+.neonR {
+    background-color:#FF3131;
 }
 
 #salePrice {
@@ -234,4 +244,9 @@ h1 {
 
 .marginLeft {
     margin-left: 1vw;
+}
+
+
+.grad {
+    background: linear-gradient(to bottom, #ef745c, #34073d) !important;
 }
