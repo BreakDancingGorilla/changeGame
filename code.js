@@ -24,7 +24,7 @@ const timerElement = document.getElementById("timer");
 const countdown = setInterval(() => {
   time++;
     if (timeLeft <= 0) {
-      
+    time = 0;
     document.getElementById("correctAns").textContent = "$" + money.change;
     screenColor.isWrong = true;
     streak = 0;
